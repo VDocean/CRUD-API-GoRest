@@ -1,0 +1,456 @@
+{
+	"info": {
+		"_postman_id": "7d3a2daa-b223-4d28-adf9-b18f3bd0743b",
+		"name": "Exemplo Estrutura de Testes",
+		"description": "Projeto criado para demonstrar habilidades em:\n\n- Estrutura de testes reais\n    \n- CRUD API\n    \n- Teste automatizados no postman\n    \n- Criação de cenários\n    \n- Criação de ambientes\n    \n- Variáveis com diferentes escopos\n    \n\nA api aqui usada é o GORest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18058094"
+	},
+	"item": [
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "Criar usuario",
+					"item": [
+						{
+							"name": "criacao de usuario",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.iterationData.get(\"id\")\r",
+											"pm.iterationData.get(\"nome\")\r",
+											"pm.iterationData.get(\"email\")\r",
+											"pm.iterationData.get(\"gender\")\r",
+											"pm.iterationData.get(\"status\")"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"{{id}\",\r\n    \"name\": \"{{name}}\",\r\n    \"email\": \"{{email}}\",\r\n    \"gender\": \"{{gender}}\",\r\n    \"status\": \"{{status}}\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url_base}}/public/v2/users",
+									"host": [
+										"{{url_base}}"
+									],
+									"path": [
+										"public",
+										"v2",
+										"users"
+									]
+								},
+								"description": "**Teste case - Criar usuário**\n\nTeste para criação de 5 usuários através da iteração de dados em arquivo json.\n\nResultados esperados:\n\n- Response code: 2XX\n    \n- String 'OK' no corpo do response\n    \n- Tempo de resposta <2000ms"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Excluir Usuarios",
+					"item": [
+						{
+							"name": "exclusao usuario",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url_base}}/public/v2/users/{{id_user_delete}}",
+									"host": [
+										"{{url_base}}"
+									],
+									"path": [
+										"public",
+										"v2",
+										"users",
+										"{{id_user_delete}}"
+									]
+								},
+								"description": "**Teste case - Deletar usuário**\n\nTeste para criação de usuários no recurso de usuários:\n\nResultados esperados:\n\n- Response code: 2XX\n    \n- String 'OK' no corpo do response\n    \n- Tempo de resposta <2000ms"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Alterar Usuarios",
+					"item": [
+						{
+							"name": "alteracao usuario",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 7802556,\r\n    \"name\": \"Davi Namboothiri PhD\",\r\n    \"email\": \"phd_davi_namboothiri@price-gusikowski.example\",\r\n    \"gender\": \"female\",\r\n    \"status\": \"active\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url_base}}/public/v2/users/{{id_user_update}}",
+									"host": [
+										"{{url_base}}"
+									],
+									"path": [
+										"public",
+										"v2",
+										"users",
+										"{{id_user_update}}"
+									]
+								},
+								"description": "**Teste case - Alterar usuário**\n\nTeste para criação de usuários no recurso de usuários:\n\nResultados esperados:\n\n- Response code: 2XX\n    \n- String 'OK' no corpo do response\n    \n- Tempo de resposta <2000ms"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "exibir usuario",
+					"item": [
+						{
+							"name": "exibe um usuario",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url_base}}/public/v2/users/7808532",
+									"host": [
+										"{{url_base}}"
+									],
+									"path": [
+										"public",
+										"v2",
+										"users",
+										"7808532"
+									]
+								},
+								"description": "**Teste case - Busca um usuário**\n\nTeste para criação de usuários no recurso de usuários:\n\nResultados esperados:\n\n- Response code: 2XX\n    \n- String 'OK' no corpo do response\n    \n- Tempo de resposta <2000ms"
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"description": "Pasta criada para operações CRUD com os recursos de usuário"
+		},
+		{
+			"name": "Posts",
+			"item": [
+				{
+					"name": "Criar Post",
+					"item": [
+						{
+							"name": "criar post",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 202525,\r\n    \"user_id\": 7802560,\r\n    \"title\": \"O que é Lorem Ipsum?\",\r\n    \"body\": \"Lorem Ipsum é simplesmente uma simulação de texto da indústria tipográfica e de impressos, e vem sendo utilizado desde o século XVI, quando um impressor desconhecido pegou uma bandeja de tipos e os embaralhou para fazer um livro de modelos de tipos. Lorem Ipsum sobreviveu não só a cinco séculos, como também ao salto para a editoração eletrônica, permanecendo essencialmente inalterado. Se popularizou na década de 60, quando a Letraset lançou decalques contendo passagens de Lorem Ipsum, e mais recentemente quando passou a ser integrado a softwares de editoração eletrônica como Aldus PageMaker.\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url_base}}/public/v2/posts",
+									"host": [
+										"{{url_base}}"
+									],
+									"path": [
+										"public",
+										"v2",
+										"posts"
+									]
+								},
+								"description": "**Teste case - Criar post**\n\nTeste para criação de usuários no recurso de usuários:\n\nResultados esperados:\n\n- Response code: 2XX\n    \n- String 'OK' no corpo do response\n    \n- Tempo de resposta <2000ms"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Buscar Posts",
+					"item": [
+						{
+							"name": "todos os posts",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"postman.setNextRequest(\"excluir comentario\")//pula todos as requisicoes ate a requisicao passada como parametro\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url_base}}/public/v2/posts",
+									"host": [
+										"{{url_base}}"
+									],
+									"path": [
+										"public",
+										"v2",
+										"posts"
+									]
+								},
+								"description": "**Teste case - Buscar post**\n\nTeste para criação de usuários no recurso de usuários:\n\nResultados esperados:\n\n- Response code: 2xx\n    \n- String 'OK' no corpo do response\n    \n- Tempo de resposta <2000ms"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Excluir Post",
+					"item": [
+						{
+							"name": "excluir um post",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url_base}}/public/v2/posts/{{id_post_delete}}",
+									"host": [
+										"{{url_base}}"
+									],
+									"path": [
+										"public",
+										"v2",
+										"posts",
+										"{{id_post_delete}}"
+									]
+								},
+								"description": "**Teste case - excluir um post**\n\nTeste para criação de usuários no recurso de usuários:\n\nResultados esperados:\n\n- Response code: 2xx\n    \n- String 'OK' no corpo do response\n    \n- Tempo de resposta <2000ms"
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"description": "Pasta criada para operações CRUD com os recursos de post"
+		},
+		{
+			"name": "Comentario",
+			"item": [
+				{
+					"name": "Buscar Comentario",
+					"item": [
+						{
+							"name": "todos comentarios",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url_base}}/public/v2/comments",
+									"host": [
+										"{{url_base}}"
+									],
+									"path": [
+										"public",
+										"v2",
+										"comments"
+									]
+								},
+								"description": "**Teste case - Buscar comentário**\n\nTeste para criação de usuários no recurso de usuários:\n\nResultados esperados:\n\n- Response code: 2xx\n    \n- String 'OK' no corpo do response\n    \n- Tempo de resposta <2000ms"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Criar Comentario",
+					"item": [
+						{
+							"name": "posta um comentario",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": 142025,\r\n    \"post_id\": 201625,\r\n    \"name\": \"comentario testes\",\r\n    \"email\": \"gajabahu_shukla@abbott-altenwerth.test\",\r\n    \"body\": \"Repellat fugit dolorem. Natus accusantium veritatis. Quo quisquam tempora.\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url_base}}/public/v2/comments",
+									"host": [
+										"{{url_base}}"
+									],
+									"path": [
+										"public",
+										"v2",
+										"comments"
+									]
+								},
+								"description": "**Teste case - criar comentario**\n\nTeste para criação de usuários no recurso de usuários:\n\nResultados esperados:\n\n- Response code: 2xx\n    \n- String 'OK' no corpo do response\n    \n- Tempo de resposta <2000ms"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Excluir comentario",
+					"item": [
+						{
+							"name": "excluir comentario",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{url_base}}/public/v2/comments/{{id_comment_delete}}",
+									"host": [
+										"{{url_base}}"
+									],
+									"path": [
+										"public",
+										"v2",
+										"comments",
+										"{{id_comment_delete}}"
+									]
+								},
+								"description": "**Teste case - deletar comentario**\n\nTeste para criação de usuários no recurso de usuários:\n\nResultados esperados:\n\n- Response code: 2xx\n    \n- String 'OK' no corpo do response\n    \n- Tempo de resposta <2000ms"
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"description": "Pasta criada para operações CRUD com os recursos de comentários"
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "a35f4557f4a1a9309d284c4514705943b3e79c2eaf9da5d66542167e7d70983f",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"console.log(pm.info.requestName)"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					"\r",
+					"pm.test(\"Successful POST request\", function () {\r",
+					"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 202, 204]);\r",
+					"});\r",
+					"\r",
+					"pm.test(\"Body matches string\", function () {\r",
+					"    pm.expect(pm.response.text()).to.include(\"OK.\");\r",
+					"});\r",
+					"pm.test(\"Response time is less than 200ms\", function () {\r",
+					"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+					"});\r",
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url_base",
+			"value": "https://gorest.co.in",
+			"type": "string"
+		},
+		{
+			"key": "id_user_delete",
+			"value": "7802557",
+			"type": "string"
+		},
+		{
+			"key": "id_user_update",
+			"value": "7802556",
+			"type": "string"
+		},
+		{
+			"key": "id_post_delete",
+			"value": "201627",
+			"type": "string"
+		},
+		{
+			"key": "id_comment_delete",
+			"value": "145455",
+			"type": "string"
+		},
+		{
+			"key": "id",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "name",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "email",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "gender",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "status",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
