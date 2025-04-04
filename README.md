@@ -1,3 +1,9 @@
+## Exemplo de testes no Postman
 
-![Texto Alternativo](img projeto Gorest API.png)  
-https://documenter.getpostman.com/view/18058094/2sB2cUAN19
+A documentação dos testes realizados na Gorest API estão disponíveis em:  
+https://documenter.getpostman.com/view/18058094/2sB2cUAN19  
+
+
+<img src="img projeto Gorest API.png" alt="Texto Alternativo" width="200" align="center">
+
+
